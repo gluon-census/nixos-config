@@ -10,8 +10,6 @@
       scrape_timeout = "12s";
     };
     retentionTime = "30d";
-
-    #webExternalUrl = "https://gluon-census.ffrn.de/prometheus/";
   };
 
 
@@ -26,6 +24,22 @@
       #  deny  all;
       #'';
     };
+  };
+
+
+  services.prometheus.scrapeConfigs = [
+    {
+      job_name = "node";
+      static_configs = [{
+        targets = [
+          "localhost:9100"
+        ];
+      }];
+    }
+  ];
+
+  services.prometheus.exporters.node = {
+    enable = true;
   };
 
 }

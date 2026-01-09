@@ -1,9 +1,5 @@
 { config, pkgs, lib, ... }:
 {
-  #imports = [
-  #  ./acme.nix
-  #];
-
   security.acme.certs = {
     "gluon-census.ffrn.de" = {
        profile = "shortlived";
@@ -26,15 +22,29 @@
         protocol = "socket";
         root_url = "https://gluon-census.ffrn.de";
       };
-      #rendering.callback_url = "https://grafana.ffffm.heroia.de";
-      #rendering.server_url = "http://localhost:${builtins.toString config.services.grafana-image-renderer.settings.service.port}/render";
+      "auth.github" = {
+        enabled = true;
+        client_id = "Iv23li58geD43of4GoZY";
+        client_secret = "$__file{${config.age.secrets.grafana-client_secret.path}}";
+        auth_url = "https://github.com/login/oauth/authorize";
+        token_url = "https://github.com/login/oauth/access_token";
+        api_url = "https://api.github.com/user";
+        scopes = "user:email,read:org";
+        allow_sign_up = true;
+        auto_login = false;
+        allowed_organizations = [ "gluon-census" ];
+        allow_assign_grafana_admin = true;
+        role_attribute_path = "contains(groups[*], '@gluon-census/grafana-admin') && 'GrafanaAdmin' || contains(groups[*], '@gluon-census/grafana-editor') && 'Editor' || 'Viewer'";
+      };
     };
     provision = {
       enable = true;
       datasources.settings.datasources = [
         {
           name = "prometheus";
-          url = "http://localhost:9090";
+          #url = "http://localhost:9090";
+          #url = "http://[::1]:9090";
+          url = "https://gluon-census.ffrn.de/prometheus/";
           type = "prometheus";
           isDefault = true;
           editable = false;
@@ -45,6 +55,13 @@
       grafana-piechart-panel
       marcusolsson-dynamictext-panel
     ];
+  };
+
+  age.secrets.grafana-client_secret = {
+    file = ./secrets/grafana-github-client-secret.age;
+    mode = "440";
+    owner = "grafana";
+    group = "grafana";
   };
 
   services.nginx.enable = true;

@@ -12,7 +12,7 @@
     ./incus.nix
     ./grafana.nix
     ./prometheus.nix
-    #./census-exporter.nix
+    ./census-exporter.nix
   ];
 
   networking = {
@@ -50,7 +50,6 @@
     git
     htop
     tmux
-    picocom
     mtr
     parted
     ncdu
@@ -64,19 +63,20 @@
     dig
     inetutils
 
-    ethtool
-
-    btop
-
-    iw
-
     unzip
     zip
-
-    nfs-utils
   ];
 
   time.timeZone = "Europe/Berlin";
+
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = false;
+  };
+
+  users.users.root.openssh.authorizedKeys.keys = [
+   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKdnwVGpMaBv5Bx2XuIvuBI+b4HNaPYcuPoGSzZi/Z5R ffrn@tom v1"
+  ];
 
   system.stateVersion = "25.11"; # Did you read the comment?
 }
