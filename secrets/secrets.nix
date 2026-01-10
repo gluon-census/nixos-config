@@ -7,12 +7,12 @@ let
 
   admins = tom;
 
-  gluon-census = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE9m7razm+ViAPWCe638vXa9PdJlBWQNk5TVcj9He/n2 root@gluon-census" ];
-  systems = [ gluon-census ];
+  gluoncensus = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE9m7razm+ViAPWCe638vXa9PdJlBWQNk5TVcj9He/n2 root@gluon-census" ];
+  systems = [ gluoncensus ];
 in
 {
   "grafana-github-client-secret.age" = {
-    publicKeys = admins ++ gluon-census;
-    #armor = true;
+    publicKeys = admins ++ gluoncensus;
+    armor = true;
   };
 }
