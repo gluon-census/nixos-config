@@ -14,6 +14,16 @@
         agenix.nixosModules.default
         {
           environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
+
+          system.autoUpgrade = {
+            enable = true;
+            flake = inputs.self.outPath;
+            flags = [
+              "--print-build-logs"
+            ];
+            dates = "02:00";
+            randomizedDelaySec = "45min";
+          };
         }
       ];
     };
