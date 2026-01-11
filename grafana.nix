@@ -35,6 +35,7 @@
         allowed_organizations = [ "gluon-census" ];
         allow_assign_grafana_admin = true;
         role_attribute_path = "contains(groups[*], '@gluon-census/grafana-admin') && 'GrafanaAdmin' || contains(groups[*], '@gluon-census/grafana-editor') && 'Editor' || 'Viewer'";
+        use_pkce = true;
       };
     };
     provision = {
