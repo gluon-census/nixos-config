@@ -9,7 +9,9 @@
       evaluation_interval = "15s";
       scrape_timeout = "12s";
     };
-    retentionTime = "400d";
+    extraFlags = [
+      "--storage.tsdb.retention.size=10GB"
+    ];
   };
 
 
