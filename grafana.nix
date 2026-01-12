@@ -4,7 +4,7 @@
     "gluon-census.ffrn.de" = {
        profile = "shortlived";
        extraDomainNames = [
-         #"[2a01:4f8:160:624c:1266:6aff:fec2:c796]"
+         "2a01:4f8:160:624c:1266:6aff:fec2:c796"
        ];
        validMinDays = 3;
        renewInterval = "3/6:00:00";
