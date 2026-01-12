@@ -9,7 +9,7 @@
       evaluation_interval = "15s";
       scrape_timeout = "12s";
     };
-    retentionTime = "30d";
+    retentionTime = "400d";
   };
 
 
