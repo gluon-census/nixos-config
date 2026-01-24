@@ -5,7 +5,7 @@
 
 python3.pkgs.buildPythonApplication rec {
   pname = "gluon-census-exporter";
-  version = "2025.10.17";
+  version = "2025.10.17-unstable-2026-01-23";
   pyproject = true;
 
   dontCheckRuntimeDeps = true;
@@ -13,8 +13,8 @@ python3.pkgs.buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "freifunk-gluon";
     repo = "census-exporter";
-    rev = "f0f47fb91a62aa66ea6e2bff2d53c60d8d677744";
-    hash = "sha256-bH20gLFC5g9xqwvAttDDaS8iVod5xgFRzjXA31vvKb8=";
+    rev = "257a3dd0f83709c651459824e24566ab31682b66";
+    hash = "sha256-bhJIk0HljSpp0O7jt/u3ASobRiUGmqgxLNISGEUk2JA=";
   };
 
   build-system = with python3.pkgs; [
