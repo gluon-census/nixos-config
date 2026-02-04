@@ -41,6 +41,12 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  nix.gc = {
+    automatic = true;
+    randomizedDelaySec = "45min";
+    options = "--delete-older-than 4d";
+  };
+
   environment.systemPackages = with pkgs; [
     vim
     nano
