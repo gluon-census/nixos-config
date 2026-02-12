@@ -17,12 +17,17 @@
 
           system.autoUpgrade = {
             enable = true;
+            upgrade = false;
+            dates = "hourly";
+            randomizedDelaySec = "15min";
+            persistent = false;
             flake = inputs.self.outPath;
             flags = [
               "--print-build-logs"
+              "--update-input" "nixpkgs"
+              "--commit-lock-file"
             ];
-            dates = "02:00";
-            randomizedDelaySec = "45min";
+            allowReboot = true;
           };
         }
       ];
