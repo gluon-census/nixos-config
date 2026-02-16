@@ -21,11 +21,11 @@
             dates = "hourly";
             randomizedDelaySec = "15min";
             persistent = false;
-            flake = inputs.self.outPath;
             flags = [
               "--print-build-logs"
               "--update-input" "nixpkgs"
               "--commit-lock-file"
+              "--recreate-lock-file"
             ];
             allowReboot = true;
           };
