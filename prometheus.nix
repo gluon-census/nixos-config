@@ -14,10 +14,9 @@
     ];
   };
 
-
-  services.prometheus.webExternalUrl = "https://gluon-census.ffrn.de/prometheus/";
-  services.nginx.virtualHosts."gluon-census.ffrn.de" = {
-    locations."/prometheus/" = {
+  services.prometheus.webExternalUrl = "https://prometheus.gluon-census.freifunk.net/";
+  services.nginx.virtualHosts."prometheus.gluon-census.freifunk.net" = {
+    locations."/" = {
       proxyPass = "http://${config.services.prometheus.listenAddress}:9090";
       recommendedProxySettings = true;
       #extraConfig = ''
@@ -26,6 +25,8 @@
       #  deny  all;
       #'';
     };
+    useACMEHost = "gluon-census.freifunk.net";
+    forceSSL = true;
   };
 
 

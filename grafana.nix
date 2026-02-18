@@ -1,10 +1,12 @@
 { config, pkgs, lib, ... }:
 {
   security.acme.certs = {
-    "gluon-census.ffrn.de" = {
+    "gluon-census.freifunk.net" = {
        profile = "shortlived";
        extraDomainNames = [
+         "prometheus.gluon-census.freifunk.net"
          "2a01:4f8:160:624c:1266:6aff:fec2:c796"
+         "gluon-census.ffrn.de"
        ];
        validMinDays = 3;
        renewInterval = "3/6:00:00";
@@ -20,7 +22,7 @@
       };
       server = {
         protocol = "socket";
-        root_url = "https://gluon-census.ffrn.de";
+        root_url = "https://gluon-census.freifunk.net";
       };
       "auth.github" = {
         enabled = true;
@@ -46,7 +48,7 @@
           name = "prometheus";
           #url = "http://localhost:9090";
           #url = "http://[::1]:9090";
-          url = "https://gluon-census.ffrn.de/prometheus/";
+          url = "https://prometheus.gluon-census.freifunk.net/";
           type = "prometheus";
           isDefault = true;
           editable = false;
@@ -70,7 +72,7 @@
 
   systemd.services.nginx.serviceConfig.SupplementaryGroups = [ "grafana" ];
 
-  services.nginx.virtualHosts."gluon-census.ffrn.de" = {
+  services.nginx.virtualHosts."gluon-census.freifunk.net" = {
     default = true;
     serverAliases = [
       #"2a01:4f8:160:624c:1266:6aff:fec2:c796"
