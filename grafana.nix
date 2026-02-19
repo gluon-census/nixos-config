@@ -5,7 +5,6 @@
        profile = "shortlived";
        extraDomainNames = [
          "prometheus.gluon-census.freifunk.net"
-         "2a01:4f8:160:624c:1266:6aff:fec2:c796"
          "gluon-census.ffrn.de"
        ];
        validMinDays = 3;
@@ -75,7 +74,7 @@
   services.nginx.virtualHosts."gluon-census.freifunk.net" = {
     default = true;
     serverAliases = [
-      #"2a01:4f8:160:624c:1266:6aff:fec2:c796"
+      "gluon-census.ffrn.de"
     ];
     locations."/" = {
       proxyPass = "http://unix:${config.services.grafana.settings.server.socket}";
