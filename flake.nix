@@ -7,7 +7,7 @@
   };
 
   outputs = { self, nixpkgs, agenix, ... }@inputs: {
-    nixosConfigurations.gluon-census = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.census01 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
