@@ -39,6 +39,7 @@
         use_pkce = true;
         use_refresh_token = true;
       };
+      security.secret_key = "$__file{${config.age.secrets."grafana-secret_key".path}}";
     };
     provision = {
       enable = true;
@@ -62,6 +63,13 @@
 
   age.secrets.grafana-client_secret = {
     file = ./secrets/grafana-github-client-secret.age;
+    mode = "440";
+    owner = "grafana";
+    group = "grafana";
+  };
+
+  age.secrets.grafana-secret_key = {
+    file = ./secrets/grafana-secret_key.age;
     mode = "440";
     owner = "grafana";
     group = "grafana";

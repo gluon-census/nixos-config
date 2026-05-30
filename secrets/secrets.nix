@@ -15,4 +15,8 @@ in
     publicKeys = admins ++ gluoncensus;
     armor = true;
   };
+  "grafana-secret_key.age" = {
+    publicKeys = admins ++ gluoncensus;
+    armor = true;
+  };
 }
