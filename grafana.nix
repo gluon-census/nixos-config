@@ -98,7 +98,16 @@
     };
     forceSSL = true;
     enableACME = true;
+    extraConfig = ''
+      listen [::]:444 ssl proxy_protocol;
+      listen 0.0.0.0:444 ssl proxy_protocol;
+    '';
+
   };
+
+  networking.firewall.extraInputRules = ''
+    ip6 saddr { 2a01:4f8:140:4093:1266:6aff:fe4d:5d3a, 2a01:4f8:140:77ff::61:1 } tcp dport 444 counter accept comment "nginx: accept proxy_protocol from web1.ffrn.de"
+  '';
 
   networking.firewall.allowedTCPPorts = [ 80 443];
   networking.firewall.allowedUDPPorts = [ 443 ];

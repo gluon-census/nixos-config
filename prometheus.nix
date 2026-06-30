@@ -19,16 +19,14 @@
     locations."/" = {
       proxyPass = "http://${config.services.prometheus.listenAddress}:9090";
       recommendedProxySettings = true;
-      #extraConfig = ''
-      #  allow 127.0.0.0/8;
-      #  allow ::1;
-      #  deny  all;
-      #'';
     };
     useACMEHost = "gluon-census.freifunk.net";
     forceSSL = true;
+    extraConfig = ''
+      listen [::]:444 ssl proxy_protocol;
+      listen 0.0.0.0:444 ssl proxy_protocol;
+    '';
   };
-
 
   services.prometheus.scrapeConfigs = [
     {
