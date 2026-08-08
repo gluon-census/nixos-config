@@ -2,13 +2,13 @@
 {
   security.acme.certs = {
     "gluon-census.freifunk.net" = {
-       profile = "shortlived";
-       extraDomainNames = [
-         "prometheus.gluon-census.freifunk.net"
-         "gluon-census.ffrn.de"
-       ];
-       validMinDays = 3;
-       renewInterval = "3/6:00:00";
+      profile = "shortlived";
+      extraDomainNames = [
+        "prometheus.gluon-census.freifunk.net"
+        "gluon-census.ffrn.de"
+      ];
+      renewInterval = "*-*-* 00/6:00:00";
+      renewJitter = "5h 30m";
     };
   };
 

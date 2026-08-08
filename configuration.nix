@@ -36,7 +36,6 @@
     };
   };
 
-  security.acme.defaults.email = "noc@frn.de";
   security.acme.acceptTerms = true;
 
   networking.nftables.enable = true;
