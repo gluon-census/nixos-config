@@ -4,9 +4,13 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     agenix.url = "github:ryantm/agenix";
+    comin = {
+      url = "github:nlewo/comin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, agenix, ... }@inputs: {
+  outputs = { self, nixpkgs, agenix, comin, ... }@inputs: {
     nixosConfigurations.census01 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -15,7 +19,7 @@
         {
           environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
 
-          system.autoUpgrade = {
+          /*system.autoUpgrade = {
             enable = true;
             upgrade = false;
             dates = "hourly";
@@ -28,8 +32,19 @@
               "--recreate-lock-file"
             ];
             allowReboot = true;
-          };
+          };*/
         }
+        comin.nixosModules.comin
+        ({
+          services.comin = {
+            enable = true;
+            remotes = [{
+              name = "origin";
+              url = "https://github.com/gluon-census/nixos-config.git";
+              branches.main.name = "main";
+            }];
+          };
+        })
       ];
     };
   };
