@@ -36,6 +36,7 @@
                   name = "origin";
                   url = "https://github.com/gluon-census/nixos-config.git";
                   branches.main.name = "main";
+                  branches.testing.operation = "switch"; 
                 }
               ];
               postDeploymentCommand = "${pkgs.writeShellScriptBin "comin-reboot-if-needed" ''
