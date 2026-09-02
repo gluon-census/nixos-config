@@ -86,5 +86,14 @@
    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKdnwVGpMaBv5Bx2XuIvuBI+b4HNaPYcuPoGSzZi/Z5R ffrn@tom v1"
   ];
 
+  boot.kernel.sysctl."vm.swappiness" = 180;
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+    priority = 100;
+  };
+
   system.stateVersion = "25.11"; # Did you read the comment?
 }
