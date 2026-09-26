@@ -7,11 +7,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1790427641,
-        "narHash": "sha256-z482M5HauhZQ+JAt8BpvAKbcv5yvnhgEh1Rcjval7NQ=",
+        "lastModified": 1790434306,
+        "narHash": "sha256-arVEbGVNwevhP7jXgLTCdZqU7JNqpTWEsyjDQW6e/9E=",
         "owner": "ryantm",
         "repo": "agenix",
-        "rev": "33bcf55ef2dcc8a9acdf5c29499ad22af8ce4c68",
+        "rev": "7133e84e573b00c17c27249083302180bbcfe565",
         "type": "github"
       },
       "original": {
